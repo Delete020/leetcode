@@ -1,4 +1,4 @@
-public class sameTree {
+public class sol {
     public boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null && q == null) {
             return true;
