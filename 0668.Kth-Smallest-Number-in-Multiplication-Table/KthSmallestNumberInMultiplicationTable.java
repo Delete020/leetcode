@@ -8,7 +8,7 @@ public class KthSmallestNumberInMultiplicationTable {
         int right = m * n;
 
         while (left < right) {
-            int mid = (left * right) / 2 + left;
+            int mid = (right - left) / 2 + left;
             if (count(mid, m, n) >= k) {
                 right = mid;
             } else {
