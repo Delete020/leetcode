@@ -6,21 +6,19 @@ public class MovingAverage {
     int[] array;
     int size;
     int index;
+    double sum;
 
     /**
      * Initialize your data structure here.
      */
     public MovingAverage(int size) {
         this.size = size;
-        array = new int[10001];
-        index = 1;
+        array = new int[size];
     }
 
     public double next(int val) {
-        array[index] = array[index - 1] + val;
-        if (index < size) {
-            return array[index] / (double) index++;
-        }
-        return (array[index] - array[(index++) - size]) / (double) size;
+        sum += val - array[index % size];
+        array[index % size] = val;
+        return sum / Math.min(++index, size);
     }
 }
