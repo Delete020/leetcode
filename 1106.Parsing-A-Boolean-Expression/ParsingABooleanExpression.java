@@ -11,20 +11,19 @@ public class ParsingABooleanExpression {
         Stack<Character> stack = new Stack<>();
         for (char c : expression.toCharArray()) {
             if (c == ',') continue;
-            if (c == ')') hander(stack);
+            if (c == ')') handler(stack);
             else stack.push(c);
         }
         return stack.peek() == 't';
     }
 
-    private void hander(Stack<Character> stack) {
+    private void handler(Stack<Character> stack) {
         List<Character> list = new ArrayList<>();
         while (stack.peek() != '(') {
             list.add(stack.pop());
         }
         stack.pop();
-        char operate = stack.pop();
-        switch (operate) {
+        switch (stack.pop()) {
             case '!' -> stack.push(list.get(0) == 'f' ? 't' : 'f');
             case '&' -> stack.push(list.contains('f') ? 'f' : 't');
             case '|' -> stack.push(list.contains('t') ? 't' : 'f');
